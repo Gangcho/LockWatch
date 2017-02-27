@@ -33,7 +33,15 @@ static LWCore* sharedInstance;
 		
 		float screenW = [[UIScreen mainScreen] bounds].size.width;
 		float screenH = [[UIScreen mainScreen] bounds].size.height;
-		self.interfaceView = [[LWInterfaceView alloc] initWithFrame:CGRectMake(0, screenH/2 - 390/2, screenW, 390)];
+		
+		if (kCFCoreFoundationVersionNumber > kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+			// iOS 10
+			self.interfaceView = [[LWInterfaceView alloc] initWithFrame:CGRectMake(0, screenH/2 - 390/2, screenW, 390)];
+		} else if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_9_0 && kCFCoreFoundationVersionNumber <= kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+			// iOS 9
+			self.interfaceView = [[LWInterfaceView alloc] initWithFrame:CGRectMake(screenW, screenH/2 - 390/2, screenW, 390)];
+		}
+		
 		
 		if ( [(NSString*)[UIDevice currentDevice].model hasPrefix:@"iPad"] ) {
 			[[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)
@@ -182,7 +190,21 @@ static LWCore* sharedInstance;
 
 - (void)setIsInSelection:(BOOL)selection {
 	self->isInSelection = selection;
-	[[[[[objc_getClass("SBLockScreenManager") sharedInstance] lockScreenViewController] scrollGestureController] scrollView] setScrollEnabled:!selection];
+	
+	if (kCFCoreFoundationVersionNumber > kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+		// iOS 10
+		if ([[[objc_getClass("SBLockScreenManager") sharedInstance] lockScreenViewController] respondsToSelector:@selector(scrollGestureController)]) {
+			[[[[[objc_getClass("SBLockScreenManager") sharedInstance] lockScreenViewController] scrollGestureController] scrollView] setScrollEnabled:!selection];
+		}
+	} else if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_9_0 && kCFCoreFoundationVersionNumber <= kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+		// iOS 9
+		
+		if (self.legacyScrollView) {
+			[self.legacyScrollView setScrollEnabled:!selection];
+		}
+	}
+	
+	
 	[self setLockscreenTimeoutEnabled:!selection];
 	
 	if (selection) {
@@ -216,7 +238,15 @@ static LWCore* sharedInstance;
 	
 	if (isMinimized) {
 		//CGRect labelFrame = self->minimizedFrame;
-		CGRect labelFrame = [[[[objc_getClass("SBLockScreenManager") sharedInstance] lockScreenViewController] dateViewController] view].frame;
+		CGRect labelFrame;
+		
+		if (kCFCoreFoundationVersionNumber > kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+			// iOS 10
+			labelFrame = [[[[objc_getClass("SBLockScreenManager") sharedInstance] lockScreenViewController] dateViewController] view].frame;
+		} else if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_9_0 && kCFCoreFoundationVersionNumber <= kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+			// iOS 9
+			labelFrame = [[(SBLockScreenViewController*)[[objc_getClass("SBLockScreenManager") sharedInstance] lockScreenViewController] view] dateView].frame;
+		}
 		CGRect oldFrame = CGRectMake(0, screenH/2 - 390/2, screenW, 390);
 		CGFloat scale = labelFrame.size.height / 312.0;
 		
@@ -231,7 +261,14 @@ static LWCore* sharedInstance;
 	} else {
 		[UIView animateWithDuration:0.2 animations:^{
 			self.interfaceView.transform = CGAffineTransformMakeScale(1, 1);
-			self.interfaceView.frame = CGRectMake(0, screenH/2 - 390/2, screenW, 390);
+			
+			if (kCFCoreFoundationVersionNumber > kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+				// iOS 10
+				self.interfaceView.frame = CGRectMake(0, screenH/2 - 390/2, screenW, 390);
+			} else if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_9_0 && kCFCoreFoundationVersionNumber <= kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+				// iOS 9
+				self.interfaceView.frame = CGRectMake(screenW, screenH/2 - 390/2, screenW, 390);
+			}
 		}];
 	}
 }

@@ -2,10 +2,16 @@
 #import "LWInterfaceView.h"
 
 LWCore* lockWatchCore;
-SBDashBoardMainPageViewController* mainPage;
-
 BOOL hasNotifications;
 BOOL mediaControlsVisible;
+
+/*
+ * THIS SECTION IS ONLY FOR IOS 10 (AND PROBABLY ABOVE)
+ */
+
+%group os10
+
+SBDashBoardMainPageViewController* mainPage;
 
 static void setLockWatchVisibility() {
 	[[mainPage isolatingViewController].view setHidden:(!hasNotifications && !mediaControlsVisible)];
@@ -45,7 +51,6 @@ static void setLockWatchVisibility() {
 %hook SBFLockScreenDateView
 
 - (void)layoutSubviews {
-	// Disabling this as long as watch faces don't work
 	[MSHookIvar<UILabel *>(self,"_timeLabel") removeFromSuperview];
 	[MSHookIvar<UILabel *>(self,"_dateSubtitleView") removeFromSuperview];
 	
@@ -114,9 +119,6 @@ static void setLockWatchVisibility() {
 
 %end
 
-
-// Fix for invisible notifications/media controls (temporary)
-
 %hook SBDashBoardNotificationListViewController
 
 -(void)_setListHasContent:(BOOL)arg1 {
@@ -138,3 +140,107 @@ static void setLockWatchVisibility() {
 }
 
 %end
+
+%end // iOS 10
+
+/*
+ * THIS SECTION IS ONLY FOR IOS 9
+ */
+
+%group os9
+
+SBLockScreenNotificationListController* notificationListController;
+
+%hook SpringBoard
+
+- (void)applicationDidFinishLaunching:(id)arg1 {
+	%orig(arg1);
+	
+	lockWatchCore = [[LWCore alloc] init];
+	
+	SBLockScreenViewController *lockViewController = MSHookIvar<SBLockScreenViewController *>([%c(SBLockScreenManager) sharedInstance], "_lockScreenViewController");
+	SBLockScreenScrollView* scrollView = MSHookIvar<SBLockScreenScrollView *>([lockViewController view] , "_foregroundScrollView");
+	[scrollView addSubview:lockWatchCore.interfaceView];
+}
+
+%end
+
+%hook SBFLockScreenDateView
+
+- (void)layoutSubviews {
+	[MSHookIvar<UILabel *>(self,"_legibilityTimeLabel") removeFromSuperview];
+	[MSHookIvar<UILabel *>(self,"_legibilityDateLabel") removeFromSuperview];
+	
+	%orig;
+}
+
+%end
+
+%hook SBLockScreenView
+
+- (void)layoutSubviews {
+	%orig;
+	
+	SBLockScreenScrollView* scrollView = MSHookIvar<SBLockScreenScrollView *>(self , "_foregroundScrollView");
+	lockWatchCore.legacyScrollView = scrollView;
+	[scrollView addSubview:lockWatchCore.interfaceView];
+}
+
+%end
+
+%hook SBLockScreenViewController
+
+- (void)viewDidLayoutSubviews {
+	%log;
+	%orig;
+	
+	notificationListController = MSHookIvar<SBLockScreenNotificationListController *>(self , "_notificationController");
+}
+
+%end
+
+%hook SBLockScreenNotificationListController
+
+- (void)_updateModelAndViewForAdditionOfItem:(id)item {
+	%orig;
+	
+	hasNotifications = YES;
+	setLockWatchVisibility();
+}
+
+- (void)_updateModelForRemovalOfItem:(id)item updateView:(BOOL)update {
+	%orig;
+	
+	int notificationCount = (int)[[notificationListController valueForKey:@"listItems"] count];
+	if (notificationCount > 0) {
+		hasNotifications = YES;
+	} else {
+		hasNotifications = NO;
+	}
+	
+	setLockWatchVisibility();
+}
+
+%end
+
+%hook MPUNowPlayingController
+
+-(void)_updatePlaybackState {
+	%orig;
+	
+	mediaControlsVisible = ([self currentNowPlayingArtwork] != NULL);
+	setLockWatchVisibility();
+}
+
+%end
+
+%end // iOS 9
+
+%ctor {
+	if (kCFCoreFoundationVersionNumber > kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+		%init(os10);
+		
+	} else if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_9_0 && kCFCoreFoundationVersionNumber <= kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+		%init(os9);
+	}
+}

@@ -8,6 +8,7 @@
 
 #import "LWWatchFace.h"
 #import "NCMaterialView.h"
+#import "_UIBackdropView.h"
 #import "CAKeyframeAnimation+AHEasing.h"
 #import "LWCore.h"
 
@@ -22,14 +23,29 @@
 	self = [super initWithFrame:frame];
 	
 	if (self) {
-		// Add a NCMaterialView to the background
-		// This is currently iOS 10 only, but let's see how I get this done on iOS < 10
-		self->backgroundView = [objc_getClass("NCMaterialView") materialViewWithStyleOptions:2];
-		[self->backgroundView setFrame:CGRectMake(-18, -18, 348, 426)];
-		[self->backgroundView setClipsToBounds:NO];
-		[[[self->backgroundView subviews] objectAtIndex:0] setClipsToBounds:YES];
-		[[[self->backgroundView subviews] objectAtIndex:0].layer setCornerRadius:15.0];
-		[self addSubview:self->backgroundView];
+		if (kCFCoreFoundationVersionNumber > kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+			// iOS 10
+			self->backgroundView = [objc_getClass("NCMaterialView") materialViewWithStyleOptions:2];
+			[self->backgroundView setFrame:CGRectMake(-18, -18, 348, 426)];
+			[self->backgroundView setClipsToBounds:NO];
+			[[[self->backgroundView subviews] objectAtIndex:0] setClipsToBounds:YES];
+			[[[self->backgroundView subviews] objectAtIndex:0].layer setCornerRadius:15.0];
+			[self addSubview:self->backgroundView];
+		} else if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_9_0 && kCFCoreFoundationVersionNumber <= kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+			// iOS 9
+			self->backgroundView = [[UIView alloc] initWithFrame:CGRectMake(-18, -18, 348, 426)];
+			[self->backgroundView setClipsToBounds:NO];
+			[self addSubview:self->backgroundView];
+			
+			_UIBackdropView *blurView = [[_UIBackdropView alloc] initWithStyle:0];
+			[blurView setBlurRadiusSetOnce:NO];
+			[blurView setBlurRadius:4.0];
+			[blurView setBackgroundColor:[UIColor colorWithWhite:0.85 alpha:0.65]];
+			[blurView setClipsToBounds:YES];
+			[blurView .layer setCornerRadius:15.0];
+			[self->backgroundView insertSubview:blurView atIndex:0];
+		}
+		
 		
 		self->contentView = [[UIView alloc] initWithFrame:CGRectZero];
 		//[self addSubview:self->contentView];
@@ -54,7 +70,7 @@
 	[self->titleLabel setText:newTitleLabel];
 }
 
-- (NCMaterialView*)backgroundView {
+- (UIView*)backgroundView {
 	return self->backgroundView;
 }
 

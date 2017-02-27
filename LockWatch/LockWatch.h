@@ -40,6 +40,35 @@
 @interface SBFLockScreenDateView : UIView
 @end
 
+@interface SBLockScreenView {
+	SBFLockScreenDateView* _dateView;
+}
+
+- (SBFLockScreenDateView*)dateView;
+@end
+
+@interface SBLockScreenViewController : UIViewController {
+	SBLockScreenView* _view;
+}
+
+- (SBLockScreenView*)view;
+@end
+
+@interface SBLockScreenScrollView : UIScrollView
+@end
+
+@interface SBLockScreenNotificationListController : UIViewController
+- (BOOL)hasAnyContent;
+@end
+
+@interface MPUNowPlayingController : NSObject
+- (UIImage *)currentNowPlayingArtwork;
+@end
+
+@interface MPUSystemMediaControlsViewController : UIViewController
+- (UIView*)artworkView;
+@end
+
 @interface SBBacklightController : NSObject
 -(NSString *)dashBoardIdentifier;
 -(void)resetIdleTimerAndUndimForSource:(long long)arg1 ;

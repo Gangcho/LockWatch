@@ -20,7 +20,11 @@
 	
 	CGRect minimizedFrame;
 	BOOL isInMinimizedView;
+	
+	UIScrollView* _legacyScrollView;
 }
+
+@property (nonatomic, strong) UIScrollView* legacyScrollView;
 
 /*
  *--*- LWInterfaceView : UIView
