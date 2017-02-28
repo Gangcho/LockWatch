@@ -7,6 +7,7 @@
 #import "LWScrollView.h"
 #import "LWScrollViewContainer.h"
 #import "LWCore.h"
+#import "LWPreferences.h"
 
 #import <LockWatchBase/LockWatchBase.h>
 #import <AudioToolbox/AudioServices.h>
@@ -81,6 +82,10 @@ static LWScrollView* sharedInstance;
 			int i = [[[LWCore sharedInstance] loadedWatchFaces] indexOfObject:plugin];
 			LWWatchFace* instance = [[[plugin principalClass] alloc] initWithFrame:CGRectMake(312*i + spacing*i + spacing/2, 0, 312, 390)];
 			
+			if ([[[LWPreferences preferences] objectForKey:@"selectedWatchFace"] isEqualToString:[plugin bundleIdentifier]]) {
+				self->selectedWatchFaceIndex = i;
+			}
+			
 			if ([plugin localizedInfoDictionary]) {
 				[instance setTitleLabelText:[[plugin localizedInfoDictionary][@"CFBundleDisplayName"] uppercaseString]];
 			} else {
@@ -95,7 +100,8 @@ static LWScrollView* sharedInstance;
 		
 		if ([self->watchFaceViews count] > 0) {
 			[self.contentView setContentSize:CGSizeMake(([self->watchFaceViews count]*312)+([self->watchFaceViews count]*spacing), 390)];
-			[[LWCore sharedInstance] setCurrentWatchFace:[self->watchFaceViews objectAtIndex:0]];
+			[self.contentView setContentOffset:CGPointMake(self.contentView.frame.size.width*self->selectedWatchFaceIndex, 0)];
+			[[LWCore sharedInstance] setCurrentWatchFace:[self->watchFaceViews objectAtIndex:self->selectedWatchFaceIndex]];
 			[[LWCore sharedInstance] startUpdatingTime];
 		}
 		
@@ -114,14 +120,14 @@ static LWScrollView* sharedInstance;
 	return self;
 }
 
-- (void)test:(id)sender {
+/*- (void)test:(id)sender {
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"LockWatch"
 													message:@"Watch faces cannot be customized yet"
 												   delegate:self
 										  cancelButtonTitle:@"OK"
 										  otherButtonTitles:nil];
 	[alert show];
-}
+}*/
 
 - (void)setFrame:(CGRect)frame {
 	[super setFrame:frame];
@@ -311,7 +317,12 @@ static LWScrollView* sharedInstance;
 		return;
 	}
 	
-	[[LWCore sharedInstance] setCurrentWatchFace:[self->watchFaceViews objectAtIndex:[self getCurrentPage]]];
+	int currentPage = [self getCurrentPage];
+	[[LWCore sharedInstance] setCurrentWatchFace:[self->watchFaceViews objectAtIndex:currentPage]];
+	
+	NSBundle* currentPlugin = [[[LWCore sharedInstance] loadedWatchFaces] objectAtIndex:currentPage];
+	[[LWPreferences preferences] setObject:[currentPlugin bundleIdentifier] forKey:@"selectedWatchFace"];
+	[LWPreferences savePreferences];
 	
 	self->isScaledDown = NO;
 	[self.contentView setScrollEnabled:NO];

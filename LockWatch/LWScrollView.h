@@ -10,6 +10,7 @@
 
 @interface LWScrollView : UIView <UIScrollViewDelegate> {
 	BOOL isScaledDown;
+	NSInteger selectedWatchFaceIndex;
 	
 	LWScrollViewContainer* _wrapperView;
 	UIScrollView* _contentView;

@@ -1,6 +1,8 @@
 #import "LockWatch.h"
+#import "LWPreferences.h"
 #import "LWInterfaceView.h"
 
+LWPreferences* preferences;
 LWCore* lockWatchCore;
 BOOL hasNotifications;
 BOOL mediaControlsVisible;
@@ -237,10 +239,14 @@ SBLockScreenNotificationListController* notificationListController;
 %end // iOS 9
 
 %ctor {
-	if (kCFCoreFoundationVersionNumber > kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
-		%init(os10);
-		
-	} else if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_9_0 && kCFCoreFoundationVersionNumber <= kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
-		%init(os9);
+	preferences = [[LWPreferences alloc] init];
+	
+	if ([[[LWPreferences preferences] objectForKey:@"enabled"] boolValue]) {
+		if (kCFCoreFoundationVersionNumber > kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+			%init(os10);
+			
+		} else if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_9_0 && kCFCoreFoundationVersionNumber <= kCFCoreFoundationVersionNumber_iOS_9_x_Max) {
+			%init(os9);
+		}
 	}
 }

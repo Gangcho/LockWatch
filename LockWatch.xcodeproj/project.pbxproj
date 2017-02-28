@@ -11,6 +11,7 @@
 		8DF7C6F61E57A8BA00723C0C /* LWInterfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D13AD6A1E57224B00F8F981 /* LWInterfaceView.m */; };
 		8DF7C6F71E57A8BD00723C0C /* LWScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D13AD6D1E57225D00F8F981 /* LWScrollView.m */; };
 		8DF7C6F81E57A8C000723C0C /* LWScrollViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D13AD741E57240E00F8F981 /* LWScrollViewContainer.m */; };
+		8DF9FD3A1E65622B00EB8011 /* LWPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF9FD391E65622B00EB8011 /* LWPreferences.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,8 @@
 		8D13AD9F1E572B7300F8F981 /* LockWatchBase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LockWatchBase.xcodeproj; path = LockWatchBase/LockWatchBase.xcodeproj; sourceTree = "<group>"; };
 		8D13ADA51E572B7D00F8F981 /* WatchFaces.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WatchFaces.xcodeproj; path = WatchFaces/WatchFaces.xcodeproj; sourceTree = "<group>"; };
 		8DF7C6FB1E57B06800723C0C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8DF9FD381E65622B00EB8011 /* LWPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWPreferences.h; sourceTree = "<group>"; };
+		8DF9FD391E65622B00EB8011 /* LWPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWPreferences.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -163,6 +166,8 @@
 				8D13AD5C1E57211E00F8F981 /* Makefile */,
 				8D13AD661E5721F000F8F981 /* LWCore.h */,
 				8D13AD671E5721F000F8F981 /* LWCore.m */,
+				8DF9FD381E65622B00EB8011 /* LWPreferences.h */,
+				8DF9FD391E65622B00EB8011 /* LWPreferences.m */,
 				8D13AD691E57224B00F8F981 /* LWInterfaceView.h */,
 				8D13AD6A1E57224B00F8F981 /* LWInterfaceView.m */,
 				8D13AD6C1E57225C00F8F981 /* LWScrollView.h */,
@@ -375,6 +380,7 @@
 				8DF7C6F71E57A8BD00723C0C /* LWScrollView.m in Sources */,
 				8DF7C6F81E57A8C000723C0C /* LWScrollViewContainer.m in Sources */,
 				8DF7C6F61E57A8BA00723C0C /* LWInterfaceView.m in Sources */,
+				8DF9FD3A1E65622B00EB8011 /* LWPreferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
