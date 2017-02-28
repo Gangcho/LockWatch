@@ -18,11 +18,11 @@
 		</data>
 		<key>Headers/LWWatchButton.h</key>
 		<data>
-		PajtQCu1wlQPeKJ2iiS+YmUmDtA=
+		lNZna92BVf5r2/jRcotl5AHGdrM=
 		</data>
 		<key>Headers/LWWatchFace.h</key>
 		<data>
-		sgay+Eq3K8GyvLcUXR1Pkvs2Lng=
+		k0Fshdh1JVMdmboeb3pw+lXkWSE=
 		</data>
 		<key>Headers/LockWatchBase.h</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		1vgPzGkBIW251Bw3hN/qG3VJyMY=
+		r1NyizxBSnQ45ccBw87/ltnJi3o=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -84,22 +84,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			PajtQCu1wlQPeKJ2iiS+YmUmDtA=
+			lNZna92BVf5r2/jRcotl5AHGdrM=
 			</data>
 			<key>hash2</key>
 			<data>
-			OH0E434BFn2ui2/b7bRaeIByuhVbgOYrzEb4CfcXyjQ=
+			JXIGX89LZNPRg4t5Hlge5IAd2IxVVN2NRXpzbv/Ck4E=
 			</data>
 		</dict>
 		<key>Headers/LWWatchFace.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			sgay+Eq3K8GyvLcUXR1Pkvs2Lng=
+			k0Fshdh1JVMdmboeb3pw+lXkWSE=
 			</data>
 			<key>hash2</key>
 			<data>
-			07T+DSOUfEigbjxAhnQOafqzsCAuqSLtB6EMDsc0Weo=
+			EgZ2tdXmvKFeRgEoXa4guccDmFPM/rksrIiqxE7Xk7s=
 			</data>
 		</dict>
 		<key>Headers/LockWatchBase.h</key>

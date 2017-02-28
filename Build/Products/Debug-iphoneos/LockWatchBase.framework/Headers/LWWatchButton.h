@@ -11,7 +11,7 @@
 @class NCMaterialView;
 
 @interface LWWatchButton : UIButton {
-	NCMaterialView* backgroundView;
+	UIView* backgroundView;
 }
 
 - (id)initWithFrame:(CGRect)frame withTitle:(NSString*)title;

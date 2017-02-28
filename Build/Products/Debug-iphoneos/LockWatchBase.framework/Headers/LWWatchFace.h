@@ -30,7 +30,7 @@
 	UILabel* titleLabel;
 	NSString* _titleLabelText;
 	
-	NCMaterialView* backgroundView;
+	UIView* backgroundView;
 	UIView* contentView;
 	
 	UIView* hourHand;
@@ -39,7 +39,7 @@
 }
 
 - (void)setTitleLabelText:(NSString*)newTitleLabel;
-- (NCMaterialView*)backgroundView;
+- (UIView*)backgroundView;
 - (void)fadeInWithContent:(BOOL)contentFade;
 - (void)fadeOutWithContent:(BOOL)contentFade;
 
