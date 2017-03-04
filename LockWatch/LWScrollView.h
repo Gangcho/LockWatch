@@ -10,6 +10,7 @@
 
 @interface LWScrollView : UIView <UIScrollViewDelegate> {
 	BOOL isScaledDown;
+	BOOL isCustomizing;
 	NSInteger selectedWatchFaceIndex;
 	
 	LWScrollViewContainer* _wrapperView;
@@ -30,8 +31,14 @@
 
 + (id)sharedInstance;
 
+- (void)tapped:(id)sender;
+- (void)pressed:(id)sender;
+
+- (void)setSelecting:(BOOL)selecting customizing:(BOOL)customizing;
 - (void)scaleUp;
 - (void)scaleDown;
+
+- (BOOL)isCustomizing;
 
 - (void)animateScaleToFactor:(float)endValue fromFactor:(float)beginningValue duration:(double)duration;
 

@@ -140,10 +140,18 @@ static LWCore* sharedInstance;
 }
 
 - (void)startUpdatingTime {
+	if (self->isUpdatingTime) {
+		return;
+	}
+	
 	self->timeUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimeForCurrentWatchFace) userInfo:nil repeats:YES];
 	self->isUpdatingTime = YES;
 }
 - (void)stopUpdatingTime {
+	if (!self->isUpdatingTime) {
+		return;
+	}
+	
 	[self->timeUpdateTimer invalidate];
 	self->isUpdatingTime = NO;
 	
@@ -207,11 +215,12 @@ static LWCore* sharedInstance;
 	
 	[self setLockscreenTimeoutEnabled:!selection];
 	
-	if (selection) {
-		[[LWScrollView sharedInstance] scaleDown];
-	} else {
-		[[LWScrollView sharedInstance] scaleUp];
-	}
+//	if (selection) {
+//		[[LWScrollView sharedInstance] scaleDown];
+//	} else {
+//		[[LWScrollView sharedInstance] scaleUp];
+//	}
+	[[LWScrollView sharedInstance] setSelecting:selection customizing:NO];
 }
 - (BOOL)isInSelection {
 	return self->isInSelection;

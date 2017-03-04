@@ -27,6 +27,9 @@
 @class NCMaterialView;
 
 @interface LWWatchFace : UIView {
+	NSString* _bundlePath;
+	NSBundle* _watchFaceBundle;
+	
 	UILabel* titleLabel;
 	NSString* _titleLabelText;
 	
@@ -36,7 +39,16 @@
 	UIView* hourHand;
 	UIView* minuteHand;
 	UIView* secondHand;
+	
+	BOOL _customizable;
+	BOOL _isCustomizing;
+	UIScrollView* customizingScrollView;
 }
+
+@property (nonatomic, strong) NSString* bundlePath;
+@property (nonatomic, strong) NSBundle* watchFaceBundle;
+@property (nonatomic, assign, readonly) BOOL customizable;
+@property (nonatomic, assign) BOOL isCustomizing;
 
 - (void)setTitleLabelText:(NSString*)newTitleLabel;
 - (UIView*)backgroundView;

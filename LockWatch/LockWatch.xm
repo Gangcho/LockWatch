@@ -1,6 +1,7 @@
 #import "LockWatch.h"
 #import "LWPreferences.h"
 #import "LWInterfaceView.h"
+#import "LWScrollView.h"
 
 LWPreferences* preferences;
 LWCore* lockWatchCore;
@@ -41,11 +42,24 @@ static void setLockWatchVisibility() {
 
 %hook SBLockScreenManager
 
-- (void)_finishUIUnlockFromSource:(int)arg1 withOptions:(id)arg2{
-	%orig;
+/*-(void)startUIUnlockFromSource:(int)arg1 withOptions:(id)arg2 {
+	
 	
 	if ([lockWatchCore isInSelection]) {
 		[lockWatchCore setIsInSelection:NO];
+		return;
+	} else {
+		%orig;
+	}
+}*/
+
+- (void)_finishUIUnlockFromSource:(int)arg1 withOptions:(id)arg2{
+	if ([[LWScrollView sharedInstance] isCustomizing]) {
+		[lockWatchCore setIsInSelection:YES];
+	} else if ([lockWatchCore isInSelection]) {
+		[lockWatchCore setIsInSelection:NO];
+	} else {
+		%orig;
 	}
 }
 %end

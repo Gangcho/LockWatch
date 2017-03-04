@@ -15,6 +15,7 @@
 		8D6BAAB81E59115A00B03BA8 /* LockWatchBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF7C7451E58482000723C0C /* LockWatchBase.framework */; };
 		8D6BAABB1E5914E500B03BA8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D6BAABD1E5914E500B03BA8 /* InfoPlist.strings */; };
 		8DC79D8C1E58828700FF0809 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DC79D8A1E58828700FF0809 /* InfoPlist.strings */; };
+		8DCA9A581E6A129B0075B028 /* Customization.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DCA9A571E6A129B0075B028 /* Customization.plist */; };
 		8DF7C6EC1E577D4800723C0C /* LockWatchBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF7C6EB1E577D4800723C0C /* LockWatchBase.framework */; };
 		8DF7C6EF1E577D7B00723C0C /* LWWatchFaceSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7C6EE1E577D7B00723C0C /* LWWatchFaceSimple.m */; };
 		8DF7C73F1E5847E600723C0C /* LWWatchFaceColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7C73E1E5847E600723C0C /* LWWatchFaceColor.m */; };
@@ -38,6 +39,7 @@
 		8D6BAABE1E5914FB00B03BA8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8DC79D8B1E58828700FF0809 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8DC79D8D1E58828C00FF0809 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8DCA9A571E6A129B0075B028 /* Customization.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Customization.plist; sourceTree = "<group>"; };
 		8DF7C6E31E577C7400723C0C /* Simple.watchface */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Simple.watchface; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DF7C6E61E577C7400723C0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DF7C6EB1E577D4800723C0C /* LockWatchBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LockWatchBase.framework; path = "../LockWatchBase/Build/Products/Debug-iphonesimulator/LockWatchBase.framework"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				8D6BAAAB1E59101400B03BA8 /* Info.plist */,
+				8DCA9A571E6A129B0075B028 /* Customization.plist */,
 				8D6BAABD1E5914E500B03BA8 /* InfoPlist.strings */,
 				8D6BAAB51E59108900B03BA8 /* LWWatchFaceUtility.h */,
 				8D6BAAB61E59108900B03BA8 /* LWWatchFaceUtility.m */,
@@ -301,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DCA9A581E6A129B0075B028 /* Customization.plist in Resources */,
 				8D6BAABB1E5914E500B03BA8 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -122,6 +122,7 @@
 
 - (void)prepareForInit {
 	[self updateTimeWithHour:10.0 minute:9.0 second:30.0 msecond:0.0 animated:NO];
+	[self addCustomizingMode];
 }
 
 - (void)updateTimeWithHour:(CGFloat)Hour minute:(CGFloat)Minute second:(CGFloat)Second msecond:(CGFloat)Msecond animated:(BOOL)animated {
@@ -245,6 +246,35 @@
 	} completion:^(BOOL finished) {
 		//[[LWCore sharedInstance] updateTimeForCurrentWatchFace];
 	}];
+}
+
+
+// CUSTOMIZATION MODE
+
+- (void)addCustomizingMode {
+	NSArray* customizingOptions = [NSArray arrayWithContentsOfFile:[self.watchFaceBundle pathForResource:@"Customization" ofType:@"plist"]];
+	if (customizingOptions) {
+		self->_customizable = YES;
+		
+		self->customizingScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 312, 390)];
+		[self->customizingScrollView setContentSize:CGSizeMake([customizingOptions count]*312, 390)];
+		[self->customizingScrollView setBackgroundColor:[UIColor colorWithRed:0 green:1 blue:0 alpha:0.5]];
+		[self->customizingScrollView setUserInteractionEnabled:NO];
+		[self addSubview:self->customizingScrollView];
+		
+		for (int i=0; i<[customizingOptions count]; i++) {
+			NSDictionary* customizingMode = [customizingOptions objectAtIndex:i];
+			
+			if ([[customizingMode objectForKey:@"type"] isEqualToString:@"face"]) {
+				UIScrollView* faceSelector = [[UIScrollView alloc] initWithFrame:CGRectMake(i*312, 0, 312, 390)];
+			}
+		}
+	}
+}
+
+- (void)setIsCustomizing:(BOOL)isCustomizing {
+	self->_isCustomizing = isCustomizing;
+	[self->customizingScrollView setUserInteractionEnabled:isCustomizing];
 }
 
 @end
