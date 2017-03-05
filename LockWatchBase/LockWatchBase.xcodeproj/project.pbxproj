@@ -22,6 +22,13 @@
 		8D13AD981E57255400F8F981 /* easing.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D13AD941E57255400F8F981 /* easing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8D13AD991E57255400F8F981 /* easing.c in Sources */ = {isa = PBXBuildFile; fileRef = 8D13AD951E57255400F8F981 /* easing.c */; };
 		8D13AD9A1E57255400F8F981 /* CAKeyframeAnimation+AHEasing.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D13AD961E57255400F8F981 /* CAKeyframeAnimation+AHEasing.m */; };
+		8DCA9A611E6B90B00075B028 /* LWWatchFaceDetailSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DCA9A5F1E6B90B00075B028 /* LWWatchFaceDetailSelector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8DCA9A621E6B90B00075B028 /* LWWatchFaceDetailSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA9A601E6B90B00075B028 /* LWWatchFaceDetailSelector.m */; };
+		8DCA9A651E6B90D10075B028 /* LWWatchFaceSecondColorSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DCA9A631E6B90D10075B028 /* LWWatchFaceSecondColorSelector.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8DCA9A661E6B90D10075B028 /* LWWatchFaceSecondColorSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA9A641E6B90D10075B028 /* LWWatchFaceSecondColorSelector.m */; };
+		8DCA9A6E1E6B91EE0075B028 /* WatchColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DCA9A6C1E6B91EE0075B028 /* WatchColors.h */; };
+		8DCA9A6F1E6B91EE0075B028 /* WatchColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA9A6D1E6B91EE0075B028 /* WatchColors.m */; };
+		8DCA9A711E6C29520075B028 /* LWPreferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DCA9A701E6C29520075B028 /* LWPreferences.h */; };
 		8DF7C6DE1E57795D00723C0C /* LWCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DF7C6DD1E57795D00723C0C /* LWCore.h */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +50,13 @@
 		8D13AD941E57255400F8F981 /* easing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easing.h; sourceTree = SOURCE_ROOT; };
 		8D13AD951E57255400F8F981 /* easing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = easing.c; sourceTree = SOURCE_ROOT; };
 		8D13AD961E57255400F8F981 /* CAKeyframeAnimation+AHEasing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAKeyframeAnimation+AHEasing.m"; sourceTree = SOURCE_ROOT; };
+		8DCA9A5F1E6B90B00075B028 /* LWWatchFaceDetailSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWWatchFaceDetailSelector.h; sourceTree = SOURCE_ROOT; };
+		8DCA9A601E6B90B00075B028 /* LWWatchFaceDetailSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWWatchFaceDetailSelector.m; sourceTree = SOURCE_ROOT; };
+		8DCA9A631E6B90D10075B028 /* LWWatchFaceSecondColorSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LWWatchFaceSecondColorSelector.h; sourceTree = SOURCE_ROOT; };
+		8DCA9A641E6B90D10075B028 /* LWWatchFaceSecondColorSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LWWatchFaceSecondColorSelector.m; sourceTree = SOURCE_ROOT; };
+		8DCA9A6C1E6B91EE0075B028 /* WatchColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchColors.h; sourceTree = SOURCE_ROOT; };
+		8DCA9A6D1E6B91EE0075B028 /* WatchColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchColors.m; sourceTree = SOURCE_ROOT; };
+		8DCA9A701E6C29520075B028 /* LWPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWPreferences.h; path = ../LockWatch/LWPreferences.h; sourceTree = SOURCE_ROOT; };
 		8DF7C6DD1E57795D00723C0C /* LWCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LWCore.h; path = ../LockWatch/LWCore.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -86,6 +100,10 @@
 				8D13AD7D1E5724B700F8F981 /* LWWatchButton.m */,
 				8D13AD791E5724B700F8F981 /* LWWatchFace.h */,
 				8D13AD7E1E5724B700F8F981 /* LWWatchFace.m */,
+				8DCA9A5F1E6B90B00075B028 /* LWWatchFaceDetailSelector.h */,
+				8DCA9A601E6B90B00075B028 /* LWWatchFaceDetailSelector.m */,
+				8DCA9A631E6B90D10075B028 /* LWWatchFaceSecondColorSelector.h */,
+				8DCA9A641E6B90D10075B028 /* LWWatchFaceSecondColorSelector.m */,
 				8D13AD711E57231300F8F981 /* Info.plist */,
 			);
 			path = LockWatchBase;
@@ -101,6 +119,9 @@
 				8D13AD931E57255400F8F981 /* CAKeyframeAnimation+AHEasing.h */,
 				8D13AD961E57255400F8F981 /* CAKeyframeAnimation+AHEasing.m */,
 				8DF7C6DD1E57795D00723C0C /* LWCore.h */,
+				8DCA9A701E6C29520075B028 /* LWPreferences.h */,
+				8DCA9A6C1E6B91EE0075B028 /* WatchColors.h */,
+				8DCA9A6D1E6B91EE0075B028 /* WatchColors.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -112,9 +133,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DCA9A611E6B90B00075B028 /* LWWatchFaceDetailSelector.h in Headers */,
+				8DCA9A6E1E6B91EE0075B028 /* WatchColors.h in Headers */,
+				8DCA9A651E6B90D10075B028 /* LWWatchFaceSecondColorSelector.h in Headers */,
 				8D13AD921E57253300F8F981 /* NCMaterialView.h in Headers */,
 				8DF7C6DE1E57795D00723C0C /* LWCore.h in Headers */,
 				8D13AD911E57253300F8F981 /* _UIBackdropView.h in Headers */,
+				8DCA9A711E6C29520075B028 /* LWPreferences.h in Headers */,
 				8D13AD811E5724B700F8F981 /* Indicators.h in Headers */,
 				8D13AD701E57230A00F8F981 /* LockWatchBase.h in Headers */,
 				8D13AD971E57255400F8F981 /* CAKeyframeAnimation+AHEasing.h in Headers */,
@@ -210,11 +235,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DCA9A621E6B90B00075B028 /* LWWatchFaceDetailSelector.m in Sources */,
 				8D13AD991E57255400F8F981 /* easing.c in Sources */,
+				8DCA9A6F1E6B91EE0075B028 /* WatchColors.m in Sources */,
 				8D13AD871E5724B700F8F981 /* LWWatchButton.m in Sources */,
 				8D13AD881E5724B700F8F981 /* LWWatchFace.m in Sources */,
 				8D13AD851E5724B700F8F981 /* Hands.m in Sources */,
 				8D13AD861E5724B700F8F981 /* Indicators.m in Sources */,
+				8DCA9A661E6B90D10075B028 /* LWWatchFaceSecondColorSelector.m in Sources */,
 				8D13AD9A1E57255400F8F981 /* CAKeyframeAnimation+AHEasing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

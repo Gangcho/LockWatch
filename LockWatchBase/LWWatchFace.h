@@ -26,7 +26,7 @@
 
 @class NCMaterialView;
 
-@interface LWWatchFace : UIView {
+@interface LWWatchFace : UIView <UIScrollViewDelegate> {
 	NSString* _bundlePath;
 	NSBundle* _watchFaceBundle;
 	
@@ -36,17 +36,22 @@
 	UIView* backgroundView;
 	UIView* contentView;
 	
+	UIView* indicatorBase;
+	UIView* indicatorView;
 	UIView* hourHand;
 	UIView* minuteHand;
 	UIView* secondHand;
 	
+	int _levelOfDetail;
 	BOOL _customizable;
 	BOOL _isCustomizing;
 	UIScrollView* customizingScrollView;
+	NSMutableDictionary* preferences;
 }
 
 @property (nonatomic, strong) NSString* bundlePath;
 @property (nonatomic, strong) NSBundle* watchFaceBundle;
+@property (nonatomic, assign) int levelOfDetail;
 @property (nonatomic, assign, readonly) BOOL customizable;
 @property (nonatomic, assign) BOOL isCustomizing;
 

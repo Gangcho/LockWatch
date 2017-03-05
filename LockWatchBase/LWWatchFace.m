@@ -11,8 +11,11 @@
 #import "_UIBackdropView.h"
 #import "CAKeyframeAnimation+AHEasing.h"
 #import "LWCore.h"
+#import "LWPreferences.h"
 
 #import <objc/runtime.h>
+#import <LockWatchBase/LWWatchFaceDetailSelector.h>
+#import <LockWatchBase/LWWatchFaceSecondColorSelector.h>
 
 #define scaleUpFactor (312.0/188.0)
 #define deg2rad(angle) ((angle) / 180.0 * M_PI)
@@ -46,9 +49,8 @@
 			[self->backgroundView insertSubview:blurView atIndex:0];
 		}
 		
-		
-		self->contentView = [[UIView alloc] initWithFrame:CGRectZero];
-		//[self addSubview:self->contentView];
+		self->contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 390/2 - 312/2, 312, 312)];
+		[self addSubview:self->contentView];
 		
 		self->titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -70, 348, 50)];
 		[self->titleLabel setTextColor:[UIColor whiteColor]];
@@ -57,8 +59,8 @@
 		[self->titleLabel setTransform:CGAffineTransformMakeScale(scaleUpFactor, scaleUpFactor)];
 		[self->backgroundView addSubview:self->titleLabel];
 		
-		[self->contentView.layer setShouldRasterize:YES];
-		[self->contentView.layer setRasterizationScale:[[UIScreen mainScreen] scale]];
+		//[self->contentView.layer setShouldRasterize:YES];
+		//[self->contentView.layer setRasterizationScale:[[UIScreen mainScreen] scale]];
 		[self setClipsToBounds:NO];
 	}
 	
@@ -121,6 +123,11 @@
 }
 
 - (void)prepareForInit {
+	self->preferences =	[[objc_getClass("LWPreferences") preferences] objectForKey:[self->_watchFaceBundle bundleIdentifier]];
+	if (!self->preferences) {
+		self->preferences = [[NSMutableDictionary alloc] init];
+	}
+	
 	[self updateTimeWithHour:10.0 minute:9.0 second:30.0 msecond:0.0 animated:NO];
 	[self addCustomizingMode];
 }
@@ -258,15 +265,26 @@
 		
 		self->customizingScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 312, 390)];
 		[self->customizingScrollView setContentSize:CGSizeMake([customizingOptions count]*312, 390)];
-		[self->customizingScrollView setBackgroundColor:[UIColor colorWithRed:0 green:1 blue:0 alpha:0.5]];
+		//[self->customizingScrollView setBackgroundColor:[UIColor colorWithRed:0 green:1 blue:0 alpha:0.5]];
 		[self->customizingScrollView setUserInteractionEnabled:NO];
+		[self->customizingScrollView setPagingEnabled:YES];
+		[self->customizingScrollView setShowsHorizontalScrollIndicator:NO];
+		[self->customizingScrollView setShowsVerticalScrollIndicator:NO];
+		[self->customizingScrollView setHidden:YES];
+		[self->customizingScrollView setDelegate:self];
 		[self addSubview:self->customizingScrollView];
 		
 		for (int i=0; i<[customizingOptions count]; i++) {
 			NSDictionary* customizingMode = [customizingOptions objectAtIndex:i];
 			
 			if ([[customizingMode objectForKey:@"type"] isEqualToString:@"face"]) {
-				UIScrollView* faceSelector = [[UIScrollView alloc] initWithFrame:CGRectMake(i*312, 0, 312, 390)];
+				LWWatchFaceDetailSelector* detailSelector = [[LWWatchFaceDetailSelector alloc] initWithFrame:CGRectMake(i*312, 0, 312, 390) options:[customizingMode objectForKey:@"options"] forWatchFace:self];
+				[self->customizingScrollView addSubview:detailSelector];
+			}
+			
+			if ([[customizingMode objectForKey:@"type"] isEqualToString:@"color-second"]) {
+				LWWatchFaceSecondColorSelector* secondColorSelector = [[LWWatchFaceSecondColorSelector alloc] initWithFrame:CGRectMake(i*312, 0, 312, 390) options:[customizingMode objectForKey:@"options"]];
+				[self->customizingScrollView addSubview:secondColorSelector];
 			}
 		}
 	}
@@ -275,6 +293,19 @@
 - (void)setIsCustomizing:(BOOL)isCustomizing {
 	self->_isCustomizing = isCustomizing;
 	[self->customizingScrollView setUserInteractionEnabled:isCustomizing];
+	[self->customizingScrollView setHidden:!isCustomizing];
+	
+	[self->indicatorView setHidden:isCustomizing];
+}
+
+- (void)setLevelOfDetail:(int)levelOfDetail {
+	self->_levelOfDetail = levelOfDetail;
+	
+	[self->indicatorView setHidden:self.isCustomizing];
+	
+	[self->preferences setObject:[NSNumber numberWithInt:levelOfDetail] forKey:@"levelOfDetail"];
+	[[objc_getClass("LWPreferences") preferences] setObject:self->preferences forKey:[self->_watchFaceBundle bundleIdentifier]];
+	[objc_getClass("LWPreferences") savePreferences];
 }
 
 @end

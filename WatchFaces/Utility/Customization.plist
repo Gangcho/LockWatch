@@ -26,7 +26,7 @@
 	</dict>
 	<dict>
 		<key>type</key>
-		<string>color_second</string>
+		<string>color-second</string>
 		<key>options</key>
 		<array>
 			<string>ice-white</string>

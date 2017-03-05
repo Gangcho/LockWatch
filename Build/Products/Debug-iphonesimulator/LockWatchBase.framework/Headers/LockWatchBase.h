@@ -13,6 +13,8 @@ FOUNDATION_EXPORT const unsigned char LockWatchBaseVersionString[];
 #import <LockWatchBase/LWWatchButton.h>
 #import <LockWatchBase/Indicators.h>
 #import <LockWatchBase/Hands.h>
+#import <LockWatchBase/LWWatchFaceDetailSelector.h>
+#import <LockWatchBase/LWWatchFaceSecondColorSelector.h>
 
 #import <LockWatchBase/CAKeyframeAnimation+AHEasing.h>
 #import <LockWatchBase/NCMaterialView.h>

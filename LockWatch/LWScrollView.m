@@ -184,9 +184,9 @@ static LWScrollView* sharedInstance;
 	int nextIndex = (page < [self->watchFaceViews count]-1) ? ceil(page) : (int)[self->watchFaceViews count]-1;
 	
 	if (self->scrollDelta != scrollView.contentOffset.x) {
-		LWWatchFace* next = [self->watchFaceViews objectAtIndex:nextIndex];
-		
 		if (self->scrollDelta < scrollView.contentOffset.x) {
+			LWWatchFace* next = [self->watchFaceViews objectAtIndex:nextIndex];
+			
 			if (scrollView.contentOffset.x+width <= scrollView.contentSize.width && scrollView.contentOffset.x > 0) {
 				LWWatchFace* current = [self->watchFaceViews objectAtIndex:MAX(nextIndex-1, 0)];
 				
@@ -485,7 +485,7 @@ static LWScrollView* sharedInstance;
 	
 	[self->tapped setEnabled:selecting];
 	if (![[UIDevice currentDevice] _supportsForceTouch] || deviceIsiPad) {
-		[self->pressed setEnabled:!selecting];
+		[self->pressed setEnabled:(!selecting && !customizing)];
 	}
 	
 	[self.contentView.layer removeAllAnimations];
@@ -518,14 +518,16 @@ static LWScrollView* sharedInstance;
 			[self animateCustomizeButtonToPosition:-75 fromPosition:0 withAlpha:1.0 duration:0.25];
 		}
 		
-		if (([[UIDevice currentDevice] _supportsForceTouch] && !deviceIsiPad) && !self->isCustomizing) {
-			[self->customizeButton.layer removeAllAnimations];
-			[self->customizeButton setTransform:CGAffineTransformIdentity];
-			[self->customizeButton setFrame:CGRectMake(self.frame.size.width/2 - 210/2,
-													   self.frame.size.height - 56,
-													   210,
-													   56)];
-		}
+		//if ([[UIDevice currentDevice] _supportsForceTouch] && !deviceIsiPad) {
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((self->isCustomizing ? 0.25 : 0.0) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+				[self->customizeButton.layer removeAllAnimations];
+				[self->customizeButton setTransform:CGAffineTransformIdentity];
+				[self->customizeButton setFrame:CGRectMake(self.frame.size.width/2 - 210/2,
+														   self.frame.size.height - 56,
+														   210,
+														   56)];
+			});
+		//}
 	} else {
 		int currentPage = [self getCurrentPage];
 		[[LWCore sharedInstance] setCurrentWatchFace:[self->watchFaceViews objectAtIndex:currentPage]];

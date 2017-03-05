@@ -17,14 +17,20 @@
 
 @implementation Indicators
 
-/* UTILITY */
-+ (UIView*)indicatorsForUtilityWithDetail:(int)detail {
-	UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 390/2 - 312/2, 312, 312)];
++ (UIView*)indicatorBase {
+	UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 312, 312)];
 	_UIBackdropView *blurView = [[_UIBackdropView alloc] initWithFrame:CGRectZero autosizesToFitSuperview:YES settings:[_UIBackdropViewSettings settingsForStyle:1]];
 	[container addSubview:blurView];
 	
 	[blurView.layer setCornerRadius:156.0];
 	[blurView setClipsToBounds:YES];
+	
+	return container;
+}
+
+/* UTILITY */
++ (UIView*)indicatorsForUtilityWithDetail:(int)detail {
+	UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 312, 312)];
 	
 	switch (detail) {
 		case 0: {

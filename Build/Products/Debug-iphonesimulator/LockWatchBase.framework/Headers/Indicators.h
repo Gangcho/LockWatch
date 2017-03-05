@@ -10,6 +10,7 @@
 
 @interface Indicators : NSObject
 
++ (UIView*)indicatorBase;
 + (UIView*)indicatorsForUtilityWithDetail:(int)detail;
 + (UIView*)indicatorsForSimpleWithDetail:(int)detail;
 + (UIView*)indicatorsForColorWithAccentColor:(UIColor*)accentColor;

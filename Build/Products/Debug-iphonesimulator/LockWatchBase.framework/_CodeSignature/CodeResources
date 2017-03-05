@@ -14,7 +14,7 @@
 		</data>
 		<key>Headers/Indicators.h</key>
 		<data>
-		eOUQxVJ4Bz6yzSlkuzM6SZyk4VY=
+		faYXPTbcdbSdVqgynX382bgrjxI=
 		</data>
 		<key>Headers/LWWatchButton.h</key>
 		<data>
@@ -22,11 +22,19 @@
 		</data>
 		<key>Headers/LWWatchFace.h</key>
 		<data>
-		noYS6ZuFLyuNaNdTXaktWc8YYHw=
+		zUVVdBY6aUCs09/4NL6/1o3Hu98=
+		</data>
+		<key>Headers/LWWatchFaceDetailSelector.h</key>
+		<data>
+		2KgaJtpKU1OXH92o2YLF+qFG8xA=
+		</data>
+		<key>Headers/LWWatchFaceSecondColorSelector.h</key>
+		<data>
+		nKNMo1D3MAOeEzy3mDkVSHKswxk=
 		</data>
 		<key>Headers/LockWatchBase.h</key>
 		<data>
-		XVRFLs4omTyYWyn3IeNN0Sz0Uos=
+		Q0Eylq1YkGDkvEuTZf5xwaDh3ko=
 		</data>
 		<key>Headers/NCMaterialView.h</key>
 		<data>
@@ -73,11 +81,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			eOUQxVJ4Bz6yzSlkuzM6SZyk4VY=
+			faYXPTbcdbSdVqgynX382bgrjxI=
 			</data>
 			<key>hash2</key>
 			<data>
-			zwHFROVoU47E3g9Mw6lhbpYA3RtLEqx5SWYGuKt2z34=
+			nkA5U3Y1tkX7OeaRfeAA7LSA0gLdttK1WZlrX57dMrc=
 			</data>
 		</dict>
 		<key>Headers/LWWatchButton.h</key>
@@ -95,22 +103,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			noYS6ZuFLyuNaNdTXaktWc8YYHw=
+			zUVVdBY6aUCs09/4NL6/1o3Hu98=
 			</data>
 			<key>hash2</key>
 			<data>
-			9UjEP5CSJ5jdMO81j2nxaeAjgTE7GWrobU0GK1nPJA4=
+			ozQ/hFVg0myOIEzHEW2lhoj7dxtz/sCuo96JDT/p/co=
+			</data>
+		</dict>
+		<key>Headers/LWWatchFaceDetailSelector.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			2KgaJtpKU1OXH92o2YLF+qFG8xA=
+			</data>
+			<key>hash2</key>
+			<data>
+			/OJ1ZR7NQoA7lFpdx+AzOxEmzjYWQSPuwW/Rf/9ZS8s=
+			</data>
+		</dict>
+		<key>Headers/LWWatchFaceSecondColorSelector.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			nKNMo1D3MAOeEzy3mDkVSHKswxk=
+			</data>
+			<key>hash2</key>
+			<data>
+			wUwI1QULfR23bt1+IxE7vo7XG75W+h3ix3Oq3Ux/ySw=
 			</data>
 		</dict>
 		<key>Headers/LockWatchBase.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			XVRFLs4omTyYWyn3IeNN0Sz0Uos=
+			Q0Eylq1YkGDkvEuTZf5xwaDh3ko=
 			</data>
 			<key>hash2</key>
 			<data>
-			Xm/20Uj9YByZDYxaZPpaOW9kGKeGxQkPUmF5f2pynpI=
+			Q0bkyClsEyf+J85gskBwj+VsiOPKJ2OfjU2mvarVX3Y=
 			</data>
 		</dict>
 		<key>Headers/NCMaterialView.h</key>
